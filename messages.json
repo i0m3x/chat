@@ -1,0 +1,28 @@
+
+ [
+    {
+    "username":"mike",
+    "text": "greetings",
+    "date": "7Aug",
+    "time": "5:15p.m."
+},
+
+{
+    "username":"lexi",
+    "text": "salutations",
+    "date": "7Aug",
+    "time": "5:23p.m."
+},
+{
+    "username":"mike",
+    "text": "greetings",
+    "date": "7Aug",
+    "time": "5:15p.m."
+},
+{
+    "username":"mike",
+    "text": "greetings",
+    "date": "7Aug",
+    "time": "5:15p.m."
+}
+ ]
