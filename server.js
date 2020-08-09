@@ -11,43 +11,48 @@ const server = http.createServer((req, resp) => {
     const url = new URL('https://' + port + req.url)
     const path = url['pathname']
    
-    if (path == '/messages') {
-        
+    if (path == '/messages' && req.method == 'GET') {
+            console.log(req.body)
             fs.readFile("messages.json",(err, data) => {
-                // const jsonResponse = { //this is a JSON obj we are creating
-                //     "messages": data.toString(),
-                    
-                // }
-                // console.log("jsonResponse")
+
                 console.log(data.toString())
                 // if (err)
                 resp.writeHead(200, { 'Content-Type': 'application/json' })
+                
                 resp.write(data.toString())
-                
-                
+
                 resp.end()
-                //     console.log(err)
-                //     cb(err, data)
-                //     return(JSON.parse(data.toString()))
-                    
+
             })
-        // console.log(msg1)
-        
-    } else{ //(path == '/massages') 
-        resp.writeHead(404, {'Content-Type': 'application/json'})
-        resp.write('Nice try, hehe')
-        resp.end()
-    }
+       
+    } else if (path == '/messages' && req.method == 'POST'){
 
+            let body =''
+
+            req.setEncoding('utf8');
+
+            req.on('data', (chunk) => { 
+                body += chunk; 
+
+            req.on('end', () => { 
+                try {   
+                    console.log(body)
+                    const data = JSON.parse(body); //now prepared to write to file
+                    console.log(data)
+                    console.log(data.username)
+                    console.log(data.text)
+                    console.log(typeof data)
+                    resp.write(typeof data); 
+                    resp.end();
+                } catch (err) {
+                    console.log('badJSON')
+                    resp.statusCode = 400;
+
+                    return resp.end(`error: ${err.message}`);
+                }
+            })
+        }
+        )
+    } 
 })
-
 server.listen(port)
-
-// have it sorted by user,
-//then have those separated by message
-
-//each msg will have a date and time
-
-//one user tied to many messages - one -to-many
-
-//as a person adds, it gets added to db

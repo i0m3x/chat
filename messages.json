@@ -1,5 +1,7 @@
 
- [
+{"messages" :
+[
+
     {
     "username":"mike",
     "text": "greetings",
@@ -25,4 +27,6 @@
     "date": "7Aug",
     "time": "5:15p.m."
 }
- ]
+    
+]
+}
